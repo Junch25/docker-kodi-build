@@ -1,0 +1,25 @@
+version: '1.0'
+services:
+  kodi:
+    image: kodi-debian
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: kodi-debian
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+      - SYS_NICE
+      - SYS_PTRACE
+      - SYS_CHROOT
+    hostname: kodi
+    init: true
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config:/config
+      - ./tvshows:/tvshows
+      - ./movies:/movies
+    environment:
+      TZ: Asia/Tokyo
