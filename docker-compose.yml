@@ -1,0 +1,13 @@
+version: '1.0'
+services:
+  kodi:
+    image: kodi-debian
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: kodi-debian
+    hostname: kodi
+    init: true
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Tokyo
